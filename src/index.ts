@@ -1,5 +1,6 @@
-const input: number[] = [1, 1, 2, 2, 4];
+// const input: number[] = [1, 1, 2, 2, 4];
 // const input: number[] = [1, 2, 3, 4, 5];
+const input: number[] = [1, 2, 3, 4];
 // const input: number[] = [2, 2, 2];
 // const input: number[] = [];
 
@@ -41,39 +42,41 @@ function getBooksUniqSets(booksOrder: number[]): Set<number>[] {
   return booksSets;
 }
 
-function booksChargeCal(booksOrder: number[]): number {
+function booksChargeCal(booksOrder: number[]): string {
   const sets = getBooksUniqSets(booksOrder);
   console.log("TCL ~ file: index.ts ~ line 49 ~ booksChargeCal ~ sets", sets);
   let totalPrice = 0;
   for (const bookSet of sets) {
     let bookSetPrice = 0;
     let distinticBook = 0;
-    let discountPercentage = 1;
+    let discountPercentage = 0;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (const _book of bookSet) {
       distinticBook += 1;
+      let percentage = 0;
       switch (distinticBook) {
         case 1:
-          discountPercentage;
+          percentage = 1;
           break;
         case 2:
-          discountPercentage += 1 - 0.5;
+          percentage = 1 - 0.05;
           break;
         case 3:
-          discountPercentage += 1 - 0.1;
+          percentage = 1 - 0.1;
           break;
         case 4:
-          discountPercentage += 1 - 0.2;
+          percentage = 1 - 0.2;
           break;
         case 5:
-          discountPercentage += 1 - 0.25;
+          percentage = 1 - 0.25;
           break;
       }
+      discountPercentage += percentage;
     }
     bookSetPrice = BOOK_PRICE * discountPercentage;
     totalPrice += bookSetPrice;
   }
-  return totalPrice;
+  return totalPrice.toFixed(2);
 }
 
 const output = booksChargeCal(input);
